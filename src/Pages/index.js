@@ -4,8 +4,9 @@ import { getWeatherByLocation } from "../Apis/weatherAPI";
 import getError from "../Error/error";
 import Background from "../Components/Background/background";
 import IconChange from "../Components/Icon/icon";
+import DefaultHeader from "../Components/Layout/Header/header";
 
-const LandingPage = () => {
+const LandingPage = ({ setShowHeader, showHeader }) => {
   const [location, setLocation] = useState("");
   const [result, setResult] = useState({});
   const [errorMsg, setErrorMsg] = useState();
@@ -16,6 +17,7 @@ const LandingPage = () => {
         const data = await getWeatherByLocation(location);
         setResult(data);
         setErrorMsg();
+        setShowHeader(false); 
       } catch (err) {
         setErrorMsg(getError(err));
       }
@@ -24,6 +26,7 @@ const LandingPage = () => {
 
   return (
     <Wrapper>
+      {showHeader && <DefaultHeader />}
       <Background weather={result.weather ? result.weather[0].main : ""} />
       <div className="container">
         <input

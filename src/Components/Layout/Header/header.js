@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 const DefaultHeader = () => {
-  return <Title>How's the weather?</Title>;
+  return <HeaderWrapper>How's the weather?</HeaderWrapper>;
 };
 
 export default DefaultHeader;
 
-const Title = styled.h2`
+const HeaderWrapper = styled.h2`
   font-size: 50px;
   font-weight: bolder;
   color: #ffff;
