@@ -1,30 +1,27 @@
-import LayOut from 'components/Layout';
-import HomePage from 'Pages/Home';
-// import NowPlaying from 'Pages/Home/components/NowPlaying/nowplaying';
-// import TopRated from 'Pages/Home/components/TopRated/toprated';
-// import UpComing from 'Pages/Home/components/UpComing/upcoming';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "../Components/Layout";
+import LandingPage from "../Pages";
 
 const router = createBrowserRouter([
-	{
-		element: <LayOut />,
-		children: [
-			{ path: '/', element: <HomePage /> },
+  {
+    element: <Layout />,
+    children: [
+      { path: "/", element: <LandingPage /> },
 
-			// {
-			// 	path: '/movie/:now_playing',
-			// 	element: <NowPlaying />,
-			// },
-			// {
-			// 	path: '/movie/:upcoming',
-			// 	element: <UpComing />,
-			// },
-			// {
-			// 	path: '/movie/:top_rated',
-			// 	element: <TopRated />,
-			// },
-		],
-	},
+      // {
+      // 	path: '/movie/:now_playing',
+      // 	element: <NowPlaying />,
+      // },
+      // {
+      // 	path: '/movie/:upcoming',
+      // 	element: <UpComing />,
+      // },
+      // {
+      // 	path: '/movie/:top_rated',
+      // 	element: <TopRated />,
+      // },
+    ],
+  },
 ]);
 
 export default router;
