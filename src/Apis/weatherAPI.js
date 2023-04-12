@@ -6,5 +6,6 @@ export const getWeatherByLocation = async (location) => {
     method: "get",
     url: url,
   });
+  console.log(data.data);
   return data.data;
 };

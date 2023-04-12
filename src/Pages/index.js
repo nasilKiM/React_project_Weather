@@ -2,14 +2,15 @@ import styled from "styled-components";
 import { useState } from "react";
 import { getWeatherByLocation } from "../Apis/weatherAPI";
 import getError from "../Error/error";
-import Background from "../Components/Background/background";
-import IconChange from "../Components/Icon/icon";
-import DefaultHeader from "../Components/Layout/Header/header";
+import Background from "../utils/Background/background";
+import IconChange from "../Apis/weatherIcon";
+import DefaultHeader from "Components/Layout/Header/header";
 
-const LandingPage = ({ setShowHeader, showHeader }) => {
+const LandingPage = () => {
   const [location, setLocation] = useState("");
   const [result, setResult] = useState({});
   const [errorMsg, setErrorMsg] = useState();
+  const [showHeader, setShowHeader] = useState(true);
 
   const searchWeather = async (e) => {
     if (e.key === "Enter") {
@@ -17,9 +18,10 @@ const LandingPage = ({ setShowHeader, showHeader }) => {
         const data = await getWeatherByLocation(location);
         setResult(data);
         setErrorMsg();
-        setShowHeader(false); 
+        setShowHeader(false);
       } catch (err) {
         setErrorMsg(getError(err));
+        // setResult();
       }
     }
   };
@@ -36,7 +38,7 @@ const LandingPage = ({ setShowHeader, showHeader }) => {
           type="text"
           onKeyDown={searchWeather}
         />
-        {<div>{errorMsg}</div>}
+        {<ErrorMsg>{errorMsg}</ErrorMsg>}
         {/*result 객체가 비어 있지 않을 때! getWeatherByLocation 함수 실행 -> API 호출 success -> result 객체가 채워졌을 때, ResultWrap 컴포넌트 렌더링*/}
         {Object.keys(result).length !== 0 && (
           <>
@@ -78,6 +80,15 @@ const Wrapper = styled.div`
     font-weight: bolder;
     font-size: large;
   }
+`;
+
+const ErrorMsg = styled.div`
+  text-align: center;
+  padding: 20px;
+  font-size: medium;
+  /* font-weight: bold; */
+  letter-spacing: 2px;
+  color: white;
 `;
 
 const ResultWrapper = styled.div`
